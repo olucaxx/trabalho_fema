@@ -16,16 +16,16 @@ class EscolaController:
             return
         self.view_atualizar = atualizar_escola_view.AtualizarEscolaView(self.root, self, selecao)
 
-    def cadastrar_escola(self, nome_escola, serie, diretor, endereco, celular):
+    def cadastrar_escola(self, nome_escola, diretor, endereco, celular):
         try:
-            self.model.cadastrar(nome_escola, serie, diretor, endereco, celular)
+            self.model.cadastrar(nome_escola, diretor, endereco, celular)
             self.view_cadastro.limpar_campos()
         except ValueError as e:
             self.view_cadastro.mostrar_alerta(e)
 
-    def atualizar_escola(self, id_escola, nome_escola, serie, diretor, endereco, celular):
+    def atualizar_escola(self, id_escola, nome_escola, diretor, endereco, celular):
         try:
-            self.model.atualizar(id_escola, nome_escola, serie, diretor, endereco, celular)
+            self.model.atualizar(id_escola, nome_escola, diretor, endereco, celular)
         except ValueError as e:
             self.view_cadastro.mostrar_alerta(e)
 
@@ -38,4 +38,4 @@ class EscolaController:
         escolas = self.model.buscar_escola_no_bd(nome_escola)
         self.view_escolas.limpar_tabela()
         for escola in escolas:
-            self.view_escolas.exibir_escola(escola[0], escola[1], escola[2], escola[3], escola[4], escola[5])
+            self.view_escolas.exibir_escola(escola[0], escola[1], escola[2], escola[3], escola[4])

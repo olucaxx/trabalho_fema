@@ -11,7 +11,6 @@ class EscolaMigrations:
             CREATE TABLE IF NOT EXISTS escola (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nome TEXT NOT NULL,
-                serie TEXT NOT NULL,
                 diretor TEXT NOT NULL,
                 endereco TEXT NOT NULL,
                 celular TEXT NOT NULL
@@ -19,11 +18,11 @@ class EscolaMigrations:
         ''')
         self.conn.commit()
 
-    def inserir_escola(self, nome, serie, diretor, endereco, celular):
+    def inserir_escola(self, nome, diretor, endereco, celular):
         self.cursor.execute('''
-            INSERT INTO escola (nome, serie, diretor, endereco, celular) 
-            VALUES (?, ?, ?, ?, ?);
-        ''', (nome, serie, diretor, endereco, celular))
+            INSERT INTO escola (nome, diretor, endereco, celular) 
+            VALUES (?, ?, ?, ?);
+        ''', (nome, diretor, endereco, celular))
         self.conn.commit()
 
     def buscar_escola(self, nome_escola):
@@ -36,12 +35,12 @@ class EscolaMigrations:
         ''', ('%' + nome_escola + '%',))
         return self.cursor.fetchall()
 
-    def atualizar_escola(self, escola_id, nome, serie, diretor, endereco, celular):
+    def atualizar_escola(self, escola_id, nome, diretor, endereco, celular):
         self.cursor.execute('''
             UPDATE escola 
-            SET nome = ?, serie = ?, diretor = ?, endereco = ?, celular = ? 
+            SET nome = ?, diretor = ?, endereco = ?, celular = ? 
             WHERE id = ?;
-        ''', (nome, serie, diretor, endereco, celular, escola_id))
+        ''', (nome, diretor, endereco, celular, escola_id))
         self.conn.commit()
 
     def deletar_escola(self, escola_id):
