@@ -1,5 +1,5 @@
 from models import escola_model
-from views import cadastro_escola_view, tabela_escolas_view, atualizar_escola_view
+from views.escola import cadastro_escola_view, tabela_escolas_view, atualizar_escola_view
 
 class EscolaController:
     def __init__(self, root):

@@ -1,8 +1,8 @@
 import tkinter as tk
-from controllers import escola_controller
+from controllers import encaminhamento_controller
 
 if __name__ == "__main__":
     root = tk.Tk()
-    controller = escola_controller.EscolaController(root)
+    controller = encaminhamento_controller.EncaminhamentoController(root)
     root.mainloop()
     
