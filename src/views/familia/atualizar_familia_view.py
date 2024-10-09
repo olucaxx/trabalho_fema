@@ -7,6 +7,7 @@ class AtualizarFamiliaView:
         self.controller = controller
         self.valores = valores
         self.master.title("Atualizar Familia")
+        self.master.resizable(False, False)
 
         self.id_familia = tk.StringVar()
         self.descricao = tk.StringVar() 

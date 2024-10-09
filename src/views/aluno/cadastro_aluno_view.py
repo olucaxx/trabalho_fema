@@ -1,19 +1,12 @@
 import tkinter as tk
 from tkinter import messagebox
 
-#        self.tabela.heading('matricula', text='Matricula', anchor='w')
- #       self.tabela.heading('id_escola', text='ID Escola', anchor='w')
-  #      self.tabela.heading('id_familia', text='ID Família', anchor='w')
-   #     self.tabela.heading('nome', text='Nome', anchor='w')
-    #    self.tabela.heading('data_nasc', text='Data Nasc', anchor='w')
-     #   self.tabela.heading('endereco', text='Endereço', anchor='w')
-      #  self.tabela.heading('responsavel', text='Responsável', anchor='w')
-
 class CadastroAlunoView:
     def __init__(self, root, controller):
         self.master = tk.Toplevel(root)
         self.controller = controller
         self.master.title("Cadastro Aluno")
+        self.master.resizable(False, False)
 
         self.id_escola = tk.StringVar()
         self.id_familia = tk.StringVar() 
@@ -26,9 +19,15 @@ class CadastroAlunoView:
         self.escola_entry = tk.Entry(self.master, textvariable=self.id_escola)
         self.escola_entry.grid(row=0, column=1, padx=10, pady=10)
 
+        self.selecionar_escola_button = tk.Button(self.master, text="Selecionar", command= self.selecionar_escola)
+        self.selecionar_escola_button.grid(row=0, column=2, pady=20, columnspan=2, padx=10, sticky="nsew")
+
         tk.Label(self.master, text="ID Família:").grid(row=1, column=0, padx=10, pady=10)
         self.familia_entry = tk.Entry(self.master, textvariable=self.id_familia) 
         self.familia_entry.grid(row=1, column=1, padx=10, pady=10)
+
+        self.selecionar_escola_button = tk.Button(self.master, text="Selecionar", command= self.selecionar_familia)
+        self.selecionar_escola_button.grid(row=1, column=2, pady=20, columnspan=2, padx=10, sticky="nsew")
 
         tk.Label(self.master, text="Nome:").grid(row=2, column=0, padx=10, pady=10)
         self.nome_entry = tk.Entry(self.master, textvariable=self.nome)
@@ -46,8 +45,8 @@ class CadastroAlunoView:
         self.responsavel_entry = tk.Entry(self.master, textvariable=self.responsavel)
         self.responsavel_entry.grid(row=5, column=1, padx=10, pady=10)
 
-        submit_button = tk.Button(self.master, text="Cadastrar", command= self.cadastrar)
-        submit_button.grid(row=6, column=0, pady=20, columnspan=2, padx=10, sticky="nsew")
+        self.submit_button = tk.Button(self.master, text="Cadastrar", command= self.cadastrar)
+        self.submit_button.grid(row=6, column=0, pady=20, columnspan=2, padx=10, sticky="nsew")
 
     def mostrar_alerta(self, mensagem):
         messagebox.showwarning("ALERTA", mensagem)
@@ -61,6 +60,12 @@ class CadastroAlunoView:
         responsavel = self.responsavel.get()
 
         self.controller.cadastrar_aluno(id_escola, id_familia, nome, data_nasc, endereco, responsavel)
+
+    def selecionar_escola(self):
+        self.controller.selecionar_escola()
+
+    def selecionar_familia(self):
+        self.controller.selecionar_familia()
 
     def limpar_campos(self):
         self.id_escola.set("")

@@ -6,6 +6,7 @@ class CadastroFamiliaView:
         self.master = tk.Toplevel(root)
         self.controller = controller
         self.master.title("Cadastro Familia")
+        self.master.resizable(False, False)
 
         self.descricao = tk.StringVar()
         self.endereco = tk.StringVar()

@@ -4,6 +4,7 @@ class EncaminhamentoMigrations:
     def __init__(self):
         self.conn = sqlite3.connect("banco_de_dados.db")
         self.cursor = self.conn.cursor()
+        self.conn.execute('PRAGMA foreign_keys = ON;')
         self.criar_tabela()
 
     def criar_tabela(self):
@@ -15,7 +16,8 @@ class EncaminhamentoMigrations:
             aluno_matricula INTERGER,
             data_encaminhamento TEXT NOT NULL,
             motivo TEXT NOT NULL,
-            FOREIGN KEY (aluno_matricula) REFERENCES aluno(matricula)                                      
+            FOREIGN KEY (aluno_matricula) REFERENCES aluno(matricula),
+            FOREIGN KEY (id_assistente_social) REFERENCES assistente_social(id)                                     
             );
         ''')
         self.conn.commit()

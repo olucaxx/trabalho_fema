@@ -7,6 +7,7 @@ class AtualizarEncaminhamentoView:
         self.controller = controller
         self.valores = valores
         self.master.title("Atualizar Encaminhamento")
+        self.master.resizable(False, False)
 
         self.id = tk.StringVar() 
         self.assistente_social = tk.StringVar()

@@ -7,6 +7,7 @@ class AtualizarEscolaView:
         self.controller = controller
         self.valores = valores
         self.master.title("Atualizar Escola")
+        self.master.resizable(False, False)
 
         self.id_escola = tk.StringVar()
         self.nome_escola = tk.StringVar()

@@ -6,6 +6,7 @@ class CadastroEscolaView:
         self.master = tk.Toplevel(root)
         self.controller = controller
         self.master.title("Cadastro Escola")
+        self.master.resizable(False, False)
 
         self.nome_escola = tk.StringVar()
         self.diretor = tk.StringVar() 

@@ -15,6 +15,7 @@ class CadastroEncaminhamentoView:
         self.master = tk.Toplevel(root)
         self.controller = controller
         self.master.title("Cadastro Encaminhamento")
+        self.master.resizable(False, False)
 
         self.assistente_social = tk.StringVar()
         self.instituicoes = tk.StringVar() 

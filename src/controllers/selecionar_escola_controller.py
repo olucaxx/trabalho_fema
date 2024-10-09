@@ -1,11 +1,12 @@
 from models import escola_model
-from views.escola import cadastro_escola_view, tabela_escolas_view, atualizar_escola_view
+from views.escola import cadastro_escola_view, selecionar_escola_view, atualizar_escola_view
 
-class EscolaController:
-    def __init__(self, root):
+class SelecionarEscolaController:
+    def __init__(self, root, aluno_controller):
         self.root = root
         self.model = escola_model.Escola()
-        self.view_escolas = tabela_escolas_view.TabelaEscolasView(self.root, self)
+        self.aluno_controller = aluno_controller
+        self.view_escolas = selecionar_escola_view.TabelaEscolasView(self.root, self)
 
     def abrir_tela_cadastro(self):
         self.view_cadastro = cadastro_escola_view.CadastroEscolaView(self.root, self)
@@ -39,3 +40,6 @@ class EscolaController:
         self.view_escolas.limpar_tabela()
         for escola in escolas:
             self.view_escolas.exibir_escola(escola[0], escola[1], escola[2], escola[3], escola[4])    
+
+    def selecionar_escola(self):
+        self.aluno_controller.atualizar_id_escola(self.view_escolas.tabela.item(self.view_escolas.tabela.selection())['values'][0])

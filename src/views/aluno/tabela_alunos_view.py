@@ -4,12 +4,14 @@ from tkinter import messagebox
 
 class TabelaAlunosView:
     def __init__(self, master, controller):
-        self.master = master
+        self.master = tk.Toplevel(master)
         self.controller = controller
         self.master.title("Alunos")
+        self.master.resizable(False, False)
 
-        self.frame_botoes = tk.Frame(master)
+        self.frame_botoes = tk.Frame(self.master)
         self.frame_botoes.grid(row=0, column=0, sticky='ew', padx=5, pady=5)
+        self.frame_botoes.columnconfigure(3, weight=1)
 
         self.botao_cadastrar = tk.Button(self.frame_botoes, text="Cadastrar", command=self.controller.abrir_tela_cadastro)
         self.botao_cadastrar.grid(row=0, column=0, padx=5)
@@ -23,12 +25,12 @@ class TabelaAlunosView:
         self.pesquisa = tk.StringVar()
 
         self.pesquisa_entry = tk.Entry(self.frame_botoes, textvariable=self.pesquisa)
-        self.pesquisa_entry.grid(row=0, column=3, padx=10, pady=10)
+        self.pesquisa_entry.grid(row=0, column=3, padx=10, pady=10, sticky="nsew")
 
         self.botao_buscar = tk.Button(self.frame_botoes, text="Buscar", command= lambda: self.controller.buscar_aluno(self.pesquisa.get()))
         self.botao_buscar.grid(row=0, column=4, padx=5)
 
-        self.tabela = ttk.Treeview(master, columns=('matricula', 'id_escola', 'id_familia', 'nome', 'data_nasc', 'endereco', 'responsavel'), show='headings')
+        self.tabela = ttk.Treeview(self.master, columns=('matricula', 'id_escola', 'id_familia', 'nome', 'data_nasc', 'endereco', 'responsavel'), show='headings')
         self.tabela.grid(row=1, column=0, sticky='nsew', padx=5, pady=5)
 
         self.tabela.heading('matricula', text='Matricula', anchor='w')

@@ -1,5 +1,7 @@
 from models import aluno_model
 from views.aluno import tabela_alunos_view, cadastro_aluno_view, atualizar_aluno_view
+from controllers.selecionar_escola_controller import SelecionarEscolaController
+from controllers.selecionar_familia_controller import SelecionarFamiliaController
 
 class AlunoController:
     def __init__(self, root):
@@ -39,3 +41,15 @@ class AlunoController:
         self.view_alunos.limpar_tabela()
         for aluno in alunos:
             self.view_alunos.exibir_aluno(aluno[0], aluno[1], aluno[2], aluno[3], aluno[4], aluno[5], aluno[6])
+
+    def atualizar_id_escola(self, id_escola):
+        self.view_cadastro.id_escola.set(id_escola)
+
+    def selecionar_escola(self):
+        SelecionarEscolaController(self.root, self)
+
+    def atualizar_id_familia(self, id_familia):
+        self.view_cadastro.id_familia.set(id_familia)
+
+    def selecionar_familia(self):
+        SelecionarFamiliaController(self.root, self)

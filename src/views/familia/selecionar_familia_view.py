@@ -3,9 +3,9 @@ from tkinter import ttk
 from tkinter import messagebox
 
 class TabelaFamiliasView:
-    def __init__(self, master, controller):
+    def __init__(self, master, controller_familia):
         self.master = tk.Toplevel(master)
-        self.controller = controller
+        self.controller = controller_familia
         self.master.title("Familias")
         self.master.resizable(False, False)
 
@@ -30,6 +30,9 @@ class TabelaFamiliasView:
         self.botao_buscar = tk.Button(self.frame_botoes, text="Buscar", command= lambda: self.controller.buscar_familia(self.pesquisa.get()))
         self.botao_buscar.grid(row=0, column=4, padx=5)
 
+        self.botao_selecionar = tk.Button(self.frame_botoes, text="Selecionar", command= self.selecionar_familia)
+        self.botao_selecionar.grid(row=0, column=5, padx=5)
+
         self.tabela = ttk.Treeview(self.master, columns=('id', 'descricao', 'endereco', 'celular'), show='headings')
         self.tabela.grid(row=1, column=0, sticky='nsew', padx=5, pady=5)
 
@@ -52,3 +55,7 @@ class TabelaFamiliasView:
 
     def receber_confirmacao(self):
         return messagebox.askyesno("EXCLUSÃO", "Você deseja excluir a familia?\nEssa ação não pode ser revertida.")
+
+    def selecionar_familia(self):
+        self.controller.selecionar_familia()
+        self.master.destroy()

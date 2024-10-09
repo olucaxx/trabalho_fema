@@ -4,6 +4,7 @@ class AlunoMigrations:
     def __init__(self):
         self.conn = sqlite3.connect("banco_de_dados.db")
         self.cursor = self.conn.cursor()
+        self.conn.execute('PRAGMA foreign_keys = ON;')
         self.criar_tabela()
 
     def criar_tabela(self):
@@ -19,7 +20,7 @@ class AlunoMigrations:
                 FOREIGN KEY (id_escola) REFERENCES escola(id),
                 FOREIGN KEY (id_familia) REFERENCES familia(id)
             );
-        ''')
+        ''') # FOREIGN KEY (id_familia) REFERENCES familia(id)
         self.conn.commit()
 
     def inserir_aluno(self, id_escola, id_familia, nome, data_nasc, endereco, responsavel):
