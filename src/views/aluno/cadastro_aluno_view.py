@@ -16,18 +16,18 @@ class CadastroAlunoView:
         self.responsavel = tk.StringVar()
 
         tk.Label(self.master, text="ID Escola:").grid(row=0, column=0, padx=10, pady=10)
-        self.escola_entry = tk.Entry(self.master, textvariable=self.id_escola)
+        self.escola_entry = tk.Entry(self.master, textvariable=self.id_escola, state='readonly')
         self.escola_entry.grid(row=0, column=1, padx=10, pady=10)
 
         self.selecionar_escola_button = tk.Button(self.master, text="Selecionar", command= self.selecionar_escola)
         self.selecionar_escola_button.grid(row=0, column=2, pady=20, columnspan=2, padx=10, sticky="nsew")
 
         tk.Label(self.master, text="ID Família:").grid(row=1, column=0, padx=10, pady=10)
-        self.familia_entry = tk.Entry(self.master, textvariable=self.id_familia) 
+        self.familia_entry = tk.Entry(self.master, textvariable=self.id_familia, state='readonly') 
         self.familia_entry.grid(row=1, column=1, padx=10, pady=10)
 
-        self.selecionar_escola_button = tk.Button(self.master, text="Selecionar", command= self.selecionar_familia)
-        self.selecionar_escola_button.grid(row=1, column=2, pady=20, columnspan=2, padx=10, sticky="nsew")
+        self.selecionar_familia_button = tk.Button(self.master, text="Selecionar", command= self.selecionar_familia)
+        self.selecionar_familia_button.grid(row=1, column=2, pady=20, columnspan=2, padx=10, sticky="nsew")
 
         tk.Label(self.master, text="Nome:").grid(row=2, column=0, padx=10, pady=10)
         self.nome_entry = tk.Entry(self.master, textvariable=self.nome)

@@ -24,17 +24,23 @@ class CadastroEncaminhamentoView:
         self.motivo = tk.StringVar()
 
 
-        tk.Label(self.master, text="Assistente Social:").grid(row=0, column=0, padx=10, pady=10)
-        self.assistente_entry = tk.Entry(self.master, textvariable=self.assistente_social)
+        tk.Label(self.master, text="ID Assistente Social:").grid(row=0, column=0, padx=10, pady=10)
+        self.assistente_entry = tk.Entry(self.master, textvariable=self.assistente_social, state='readonly')
         self.assistente_entry.grid(row=0, column=1, padx=10, pady=10)
+
+        self.selecionar_assistente_button = tk.Button(self.master, text="Selecionar", command= self.selecionar_assistente)
+        self.selecionar_assistente_button.grid(row=0, column=2, pady=20, columnspan=2, padx=10, sticky="nsew")
 
         tk.Label(self.master, text="Instituições:").grid(row=1, column=0, padx=10, pady=10)
         self.instituicoes_entry = tk.Entry(self.master, textvariable=self.instituicoes) 
         self.instituicoes_entry.grid(row=1, column=1, padx=10, pady=10)
 
         tk.Label(self.master, text="Matricula:").grid(row=2, column=0, padx=10, pady=10)
-        self.aluno_matricula_entry = tk.Entry(self.master, textvariable=self.aluno_matricula)
+        self.aluno_matricula_entry = tk.Entry(self.master, textvariable=self.aluno_matricula, state='readonly')
         self.aluno_matricula_entry.grid(row=2, column=1, padx=10, pady=10)
+
+        self.selecionar_matricula_button = tk.Button(self.master, text="Selecionar", command= self.selecionar_aluno)
+        self.selecionar_matricula_button.grid(row=2, column=2, pady=20, columnspan=2, padx=10, sticky="nsew")
 
         tk.Label(self.master, text="Data do encaminhamento:").grid(row=3, column=0, padx=10, pady=10)
         self.data_encaminhamento_entry = tk.Entry(self.master, textvariable=self.data_encaminhamento)
@@ -58,6 +64,12 @@ class CadastroEncaminhamentoView:
         motivo = self.motivo.get()
 
         self.controller.cadastrar_encaminhamento(assistente_social, instituicoes, aluno_matricula, data_encaminhamento, motivo)
+
+    def selecionar_assistente(self):
+        self.controller.selecionar_assistente()
+
+    def selecionar_aluno(self):
+        self.controller.selecionar_aluno()
 
     def limpar_campos(self):
         self.assistente_social.set("")

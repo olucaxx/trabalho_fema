@@ -20,7 +20,7 @@ class AlunoMigrations:
                 FOREIGN KEY (id_escola) REFERENCES escola(id),
                 FOREIGN KEY (id_familia) REFERENCES familia(id)
             );
-        ''') # FOREIGN KEY (id_familia) REFERENCES familia(id)
+        ''')
         self.conn.commit()
 
     def inserir_aluno(self, id_escola, id_familia, nome, data_nasc, endereco, responsavel):

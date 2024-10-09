@@ -1,5 +1,7 @@
 from models import encaminhamento_model
 from views.encaminhamento import cadastro_encaminhamento_view, tabela_encaminhamentos_view, atualizar_encaminhamento_view
+from controllers.selecionar_aluno_controller import SelecionarAlunoController
+from controllers.selecionar_assistente_controller import SelecionarAssistenteSocialController
 
 class EncaminhamentoController:
     def __init__(self, root):
@@ -39,3 +41,15 @@ class EncaminhamentoController:
         self.view_encaminhamentos.limpar_tabela()
         for encaminhamento in encaminhamentos:
             self.view_encaminhamentos.exibir_encaminhamento(encaminhamento[0], encaminhamento[1], encaminhamento[2], encaminhamento[3], encaminhamento[4], encaminhamento[5])
+
+    def atualizar_aluno_matricula(self, aluno_matricula):
+        self.view_cadastro.aluno_matricula.set(aluno_matricula)
+
+    def selecionar_aluno(self):
+        SelecionarAlunoController(self.root, self)
+
+    def atualizar_id_assistente(self, id_assistente):
+        self.view_cadastro.assistente_social.set(id_assistente)
+
+    def selecionar_assistente(self):
+        SelecionarAssistenteSocialController(self.root, self)
